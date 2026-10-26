@@ -36,7 +36,7 @@ Because `.gitignore` excludes all personal files (`.env`, `config/config.json`, 
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/<your-username>/<your-repo>.git
+git clone https://github.com/<Chumiaczek>/<home-dashboard>.git
 cd Home-Dashboard
 
 # 2. Create your local .env from the template
@@ -50,53 +50,14 @@ cp config/config.example.json config/config.json
 sudo docker-compose up -d --build
 ```
 
+On first boot, `src/lib/configManager.js` automatically detects that `config/config.json` does not exist yet and copies `config/config.example.json` into `config/config.json`, giving you all 9 service cards ready to edit in the UI.
+
 Open **`http://<server-ip>:3000`** in your browser and sign in with the `DASHBOARD_USER` and `DASHBOARD_PASSWORD` from your `.env` file.
 
 > **Note for older `docker-compose 1.29.x` on Ubuntu/WSL**:
 > Avoid using `--force-recreate` on `docker-compose 1.29.2` due to a known Docker Engine v25+ `ContainerConfig` bug in old Python `docker-compose`. Instead, use:
 > - `sudo docker-compose restart` (to restart after code/env changes), or
 > - `sudo docker-compose down && sudo docker-compose up -d` (to recreate containers cleanly).
-
----
-
-## 🌿 Git Workflow: Personal Server vs. Clean Production Branch (Dad's Server)
-
-Your repository is already structured so that **`main` contains zero personal secrets**:
-- **Ignored locally (never pushed to GitHub)**:
-  - `.env` (your personal login & API tokens)
-  - `config/config.json` & `config/config.yaml` (your personal service URLs & settings)
-  - `config/vault.enc.json` (your encrypted Logins Vault)
-  - `public/backgrounds/*` (your uploaded wallpapers)
-- **Tracked in Git (shared across servers)**:
-  - `.env.example` (template environment variables)
-  - `config/config.example.json` (starter configuration with all 9 services pre-templated on `192.168.1.x`)
-
-### Creating a Dedicated `production` Branch (Optional)
-If you want a separate frozen `production` (or `dad-server`) branch that you only update when ready:
-
-```bash
-# Initialize Git and commit the clean codebase to main
-git init
-git add .
-git status   # Verify .env and config/config.json are NOT listed
-git commit -m "Initial commit: Nexus Homelab Dashboard"
-
-# Create and push both 'main' and 'production' branches
-git branch -M main
-git remote add origin https://github.com/<your-username>/<your-repo>.git
-git push -u origin main
-
-# Create the clean production branch for other servers
-git checkout -b production
-git push -u origin production
-git checkout main
-```
-
-On your dad's server, simply run:
-```bash
-git clone -b production https://github.com/<your-username>/<your-repo>.git
-```
-On first boot, `src/lib/configManager.js` automatically detects that `config/config.json` does not exist yet and copies `config/config.example.json` into `config/config.json`, giving you all 9 service cards ready to edit in the UI.
 
 ---
 
@@ -109,7 +70,7 @@ You can paste these credentials **directly in the Dashboard UI** (click the ⚙�
 ### 1. Proxmox VE (`proxmox`)
 Using an API Token is recommended over root password authentication.
 
-1. Log in to your **Proxmox VE Web UI** (`https://192.168.1.10:8006`).
+1. Log in to your **Proxmox VE Web UI** (`https://<YOUR_IP>:8006`).
 2. In the left sidebar, click **Datacenter** → **Permissions** → **API Tokens**.
 3. Click **Add**:
    - **User**: `root@pam` (or your monitoring user)
@@ -138,7 +99,7 @@ Supports multiple TrueNAS cards and per-card ZFS pool selection (e.g., `tank`).
 
 ### 3. Home Assistant (`homeassistant`)
 
-1. Log in to your **Home Assistant** instance (`http://192.168.1.30:8123`).
+1. Log in to your **Home Assistant** instance (`http://<YOUR_IP>:8123`).
 2. Click your **Profile** (bottom-left sidebar, your username/initials).
 3. Scroll to the very bottom under the **Security** tab (or main Profile page) to **Long-Lived Access Tokens**.
 4. Click **Create Token**, name it `Dashboard`, and copy the token string (`eyJ...`).
@@ -167,7 +128,7 @@ Works with UniFi Dream Machine (UDM/UDR/UCG), Cloud Key Gen2+, and standalone/se
 ### 5. Ubiquiti EdgeOS / EdgeRouter (`edgeos`)
 Streams real-time CPU %, RAM %, uptime, and interface throughput over EdgeOS's WebSocket (`/ws/stats`).
 
-1. Log in to your **EdgeRouter Web UI** (`https://192.168.1.254`).
+1. Log in to your **EdgeRouter Web UI** (`https://<YOUR_IP>`).
 2. Use your existing admin credentials or create a dedicated user under the **Users** tab.
 3. In the dashboard configuration:
    - **Username**: `admin` (or `ubnt`)
@@ -178,7 +139,7 @@ Streams real-time CPU %, RAM %, uptime, and interface throughput over EdgeOS's W
 
 ### 6. Jellyfin (`jellyfin`)
 
-1. Log in to **Jellyfin** as an administrator (`http://192.168.1.40:8096`).
+1. Log in to **Jellyfin** as an administrator (`http://<YOUR_IP>:8096`).
 2. Open the menu (top-left `☰`) → **Dashboard** (Administration).
 3. In the left sidebar under **Advanced**, click **API Keys**.
 4. Click the **`+`** button at the top, enter App Name `Homelab Dashboard`, and click **OK**.
@@ -188,7 +149,7 @@ Streams real-time CPU %, RAM %, uptime, and interface throughput over EdgeOS's W
 
 ### 7. Radarr (`radarr`)
 
-1. Open **Radarr** (`http://192.168.1.40:7878`).
+1. Open **Radarr** (`http://<YOUR_IP>:7878`).
 2. Go to **Settings** → **General**.
 3. Scroll down to the **Security** section.
 4. Copy the **API Key** and paste it into the dashboard.
@@ -197,7 +158,7 @@ Streams real-time CPU %, RAM %, uptime, and interface throughput over EdgeOS's W
 
 ### 8. Sonarr (`sonarr`)
 
-1. Open **Sonarr** (`http://192.168.1.40:8989`).
+1. Open **Sonarr** (`http://<YOUR_IP>:8989`).
 2. Go to **Settings** → **General**.
 3. Scroll down to the **Security** section.
 4. Copy the **API Key** and paste it into the dashboard.
@@ -207,7 +168,7 @@ Streams real-time CPU %, RAM %, uptime, and interface throughput over EdgeOS's W
 ### 9. qBittorrent (`qbittorrent`)
 Supports multiple qBittorrent instances simultaneously.
 
-1. Open **qBittorrent Web UI** (`http://192.168.1.40:8080`).
+1. Open **qBittorrent Web UI** (`http://<YOUR_IP>:8080`).
 2. Click **Tools** → **Options** (or the Gear ⚙️ icon) → **Web UI** tab.
 3. Under **Authentication**, check your **Username** and **Password**.
 4. Enter those credentials into the dashboard's qBittorrent service configuration.
