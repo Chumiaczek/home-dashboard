@@ -36,7 +36,7 @@ Because `.gitignore` excludes all personal files (`.env`, `config/config.json`, 
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/<Chumiaczek>/<home-dashboard>.git
+git clone https://github.com/Chumiaczek/home-dashboard.git
 cd Home-Dashboard
 
 # 2. Create your local .env from the template
