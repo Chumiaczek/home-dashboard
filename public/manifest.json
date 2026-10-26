@@ -1,0 +1,17 @@
+{
+  "name": "Chumi HomeLab Dashboard",
+  "short_name": "HomeLab",
+  "description": "Modern glassmorphic homelab service status dashboard",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090D16",
+  "theme_color": "#090D16",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

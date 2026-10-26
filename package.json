@@ -1,0 +1,14 @@
+{
+  "name": "nexus-homelab-dashboard",
+  "version": "1.0.0",
+  "description": "Modern glassmorphic, mobile-optimized Homelab Dashboard with rich API integrations for Proxmox, Home Assistant, TrueNAS, Jellyfin, UniFi OS, EdgeOS, Radarr, Sonarr, qBittorrent, and custom services.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT"
+}

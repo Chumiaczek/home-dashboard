@@ -1,0 +1,26 @@
+# ============================================================================
+# Sensitive Local Configuration & Secrets (NEVER commit to GitHub)
+# ============================================================================
+.env
+.env.*
+!.env.example
+
+# Live dashboard config & encrypted logins vault
+config/config.json
+config/config.yaml
+config/vault.enc.json
+
+# User-uploaded custom background images
+public/backgrounds/*
+!public/backgrounds/.gitkeep
+
+# Node / OS / Editor artifacts
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/

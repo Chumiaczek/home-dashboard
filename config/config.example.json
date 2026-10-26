@@ -1,0 +1,150 @@
+{
+  "settings": {
+    "title": "Nexus Homelab",
+    "subtitle": "Home Infrastructure & Media Command Center",
+    "backgroundUrl": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=2000&q=85",
+    "blurAmount": 28,
+    "cardOpacity": 0.12,
+    "overlayOpacity": 0.14,
+    "refreshIntervalSec": 15,
+    "demoMode": false,
+    "openLinksInNewTab": true,
+    "showQuickBookmarks": true,
+    "greetingName": "Admin"
+  },
+  "bookmarks": [
+    {
+      "id": "bm-router",
+      "name": "Router Gateway",
+      "url": "https://192.168.1.1",
+      "icon": "globe"
+    },
+    {
+      "id": "bm-speedtest",
+      "name": "Speedtest",
+      "url": "https://fast.com",
+      "icon": "zap"
+    }
+  ],
+  "services": [
+    {
+      "id": "srv-proxmox",
+      "name": "Proxmox VE",
+      "type": "proxmox",
+      "category": "Infrastructure",
+      "url": "https://192.168.1.10:8006",
+      "description": "Hypervisor Cluster & Virtualization",
+      "verifySsl": false,
+      "auth": {
+        "tokenId": "${PROXMOX_TOKEN_ID}",
+        "tokenSecret": "${PROXMOX_TOKEN_SECRET}",
+        "username": "",
+        "password": ""
+      }
+    },
+    {
+      "id": "srv-truenas",
+      "name": "TrueNAS SCALE",
+      "type": "truenas",
+      "category": "Infrastructure",
+      "url": "https://192.168.1.20",
+      "description": "ZFS Primary Storage Array",
+      "verifySsl": false,
+      "auth": {
+        "apiKey": "${TRUENAS_API_KEY}",
+        "poolName": "tank"
+      }
+    },
+    {
+      "id": "srv-homeassistant",
+      "name": "Home Assistant",
+      "type": "homeassistant",
+      "category": "Smart Home",
+      "url": "http://192.168.1.30:8123",
+      "description": "Smart Home Automation & Sensors",
+      "verifySsl": false,
+      "auth": {
+        "apiKey": "${HOMEASSISTANT_TOKEN}",
+        "watchedEntities": ""
+      }
+    },
+    {
+      "id": "srv-unifi",
+      "name": "UniFi OS",
+      "type": "unifi",
+      "category": "Network",
+      "url": "https://192.168.1.1",
+      "description": "UniFi Network Controller & Wi-Fi",
+      "verifySsl": false,
+      "auth": {
+        "apiKey": "${UNIFI_API_KEY}",
+        "username": "",
+        "password": "",
+        "site": "default"
+      }
+    },
+    {
+      "id": "srv-edgeos",
+      "name": "EdgeOS Router",
+      "type": "edgeos",
+      "category": "Network",
+      "url": "https://192.168.1.254",
+      "description": "Ubiquiti EdgeRouter Core Gateway",
+      "verifySsl": false,
+      "auth": {
+        "username": "${EDGEOS_USERNAME}",
+        "password": "${EDGEOS_PASSWORD}",
+        "wanInterface": "eth0"
+      }
+    },
+    {
+      "id": "srv-jellyfin",
+      "name": "Jellyfin",
+      "type": "jellyfin",
+      "category": "Media",
+      "url": "http://192.168.1.40:8096",
+      "description": "Media Streaming Server",
+      "verifySsl": false,
+      "auth": {
+        "apiKey": "${JELLYFIN_API_KEY}"
+      }
+    },
+    {
+      "id": "srv-radarr",
+      "name": "Radarr",
+      "type": "radarr",
+      "category": "Media",
+      "url": "http://192.168.1.40:7878",
+      "description": "Movie Collection Manager",
+      "verifySsl": false,
+      "auth": {
+        "apiKey": "${RADARR_API_KEY}"
+      }
+    },
+    {
+      "id": "srv-sonarr",
+      "name": "Sonarr",
+      "type": "sonarr",
+      "category": "Media",
+      "url": "http://192.168.1.40:8989",
+      "description": "TV Series Collection Manager",
+      "verifySsl": false,
+      "auth": {
+        "apiKey": "${SONARR_API_KEY}"
+      }
+    },
+    {
+      "id": "srv-qbittorrent",
+      "name": "qBittorrent",
+      "type": "qbittorrent",
+      "category": "Downloads",
+      "url": "http://192.168.1.40:8080",
+      "description": "BitTorrent Download Client",
+      "verifySsl": false,
+      "auth": {
+        "username": "${QBITTORRENT_USERNAME}",
+        "password": "${QBITTORRENT_PASSWORD}"
+      }
+    }
+  ]
+}

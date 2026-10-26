@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#090D16" />
+    </linearGradient>
+    <linearGradient id="layerTop" x1="12" y1="12" x2="52" y2="34" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#818CF8" />
+    </linearGradient>
+    <linearGradient id="layerMid" x1="12" y1="26" x2="52" y2="46" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0EA5E9" />
+      <stop offset="100%" stop-color="#6366F1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded Squircle Dark Glass Base -->
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#bgGrad)" stroke="#38BDF8" stroke-opacity="0.4" stroke-width="2" />
+
+  <!-- Bottom Server/Stack Layer -->
+  <path d="M12 43L32 53L52 43" stroke="#6366F1" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Middle Server/Stack Layer -->
+  <path d="M12 33L32 43L52 33" stroke="url(#layerMid)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Top Isometric Diamond Layer -->
+  <polygon points="32,12 12,22 32,32 52,22" fill="url(#layerTop)" fill-opacity="0.25" stroke="url(#layerTop)" stroke-width="4.5" stroke-linejoin="round" />
+
+  <!-- Glowing Status Dot -->
+  <circle cx="49" cy="15" r="4.5" fill="#10B981" stroke="#090D16" stroke-width="2" />
+</svg>
